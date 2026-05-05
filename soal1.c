@@ -39,17 +39,18 @@ void push (SegelStack *S, char A){
 void pop (SegelStack *S, char *A){
     SegelNode *N = (SegelNode*)malloc(sizeof(SegelNode));
     if(S->head == NULL){
-        printf("Stack Kosong\n");
+       // printf("Stack Kosong\n");
     }
     else{
+        if(S->last->Prev ==NULL){
+            S->head = NULL;
+        }
         int i = 0;
         N = S->last;
         *A = N->Segel;
         S->last = S->last->Prev;
         i++;
-        if(S->last->Prev ==NULL){
-            S->head = NULL;
-        }
+        
     }
 }
 
@@ -72,39 +73,45 @@ int main (){
     int count9 = 0;
     int countP = 0;
     int countO = 0;
-    for (int i = 0; i < strlen(str) - 1; i++){
+    int counthuruf = 0;
+    for (int i = 0; i < strlen(str); i++){
         char temp;
         pop(&S, &temp);
-
-        if (strcmp(&temp, "(") == 0){
+        //printf("%c ", temp);
+        if (strcmp(&temp, ")") == 0){
             count9++;
         }
-        else if (strcmp(&temp, "[") == 0)
+        else if (strcmp(&temp, "]") == 0)
         {
             countP++;
         }
-        else if (strcmp(&temp, "{") == 0){
+        else if (strcmp(&temp, "}") == 0){
             countO++;
         }
-        else if (strcmp(&temp, ")") == 0&& count9 % 2 == 1){
+        else if (strcmp(&temp, "(") == 0&& count9 % 2 == 1){
             count9++;
         }
-        else if (strcmp(&temp, "]") == 0 && countP % 2 == 1){
+        else if (strcmp(&temp, "[") == 0 && countP % 2 == 1){
             countP++;
         }
-        else if (strcmp(&temp, "}") == 0 && countO % 2 == 1){
+        else if (strcmp(&temp, "{") == 0 && countO % 2 == 1){
             countO++;
         }
         else{
-            continue;
+            if (S.head == NULL){
+                break;
+            }
+            counthuruf++;
         }
         
     }
-    if (count9 % 2 == 0 && countP % 2 == 0 && countO % 2 == 0){
+    if ((count9 % 2 == 0) && (countP % 2 == 0) && (countO % 2 == 0)){
         printf("VALID");
+        //printf("%d %d %d\n", count9, countO, countP);
     }
     else{
         printf("INVALID");
+        //printf("%d %d %d\n", count9, countO, countP);
     }
 
 }
