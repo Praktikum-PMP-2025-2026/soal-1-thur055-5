@@ -1,3 +1,11 @@
+/** EL2008 Praktikum Pemecahan Masalah dengan Pemrograman 2025/2026
+ *   Modul               : 4
+ *   Hari dan Tanggal    : 05/05/2026
+ *    (NIM)          : Arthur (13224055)
+ *    File           : soal1.c
+ *   Deskripsi           : pengecekan tutup kurung
+ * 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
